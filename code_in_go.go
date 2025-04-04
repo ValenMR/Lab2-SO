@@ -55,6 +55,7 @@ func quitarGuiones(s string) string {
 }
 
 func main() {
+	//el reader es para leer la entrada del usuario
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Ingresa una cadena (máx. 100 caracteres): ")
 	input, _ := reader.ReadString('\n')
