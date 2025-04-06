@@ -68,33 +68,26 @@ int CountVowelsAndConsonants(char *s) {
     asciiCode = *pointer;
     isLowerCaseRange = asciiCode >= 97 && asciiCode <= 122;
     isUpperCaseRange = asciiCode >= 65 && asciiCode <= 90;
-    isSpace = asciiCode == 32;
 
-    if (!(isLowerCaseRange || isUpperCaseRange || isSpace)) {
-      fprintf(stderr, "The string can only contain alphabetical values \n");
-      exit(1);
-    }
-
-    if(*pointer == ' '){
-
-    }
-    else if (*pointer == 'a' || *pointer == 'A') {
-      numberOfA++;
-    } 
-    else if (*pointer == 'e' || *pointer == 'E') {
-      numberOfE++;
-    }
-    else if (*pointer == 'i' || *pointer == 'I') {
-      numberOfI++;
-    } 
-    else if (*pointer == 'o' || *pointer == 'O') {
-      numberOfO++;
-    }
-    else if (*pointer == 'u' || *pointer == 'U') {
-      numberOfU++;
-    } 
-    else {
-      numberOfConsonants++;
+    if (isLowerCaseRange || isUpperCaseRange) {
+      if (*pointer == 'a' || *pointer == 'A') {
+        numberOfA++;
+      } 
+      else if (*pointer == 'e' || *pointer == 'E') {
+        numberOfE++;
+      }
+      else if (*pointer == 'i' || *pointer == 'I') {
+        numberOfI++;
+      } 
+      else if (*pointer == 'o' || *pointer == 'O') {
+        numberOfO++;
+      }
+      else if (*pointer == 'u' || *pointer == 'U') {
+        numberOfU++;
+      } 
+      else {
+        numberOfConsonants++;
+      }
     }
 
     pointer++;
