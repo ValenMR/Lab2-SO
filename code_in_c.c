@@ -41,21 +41,19 @@ int reverseString(char *s) {
     pointer2--;
   }
   
-  printf("- Reversed string: ");
-
   while (*s != '\0') {
     printf("%c", *s);
     s++;
   }
 
-  printf("\n");
+  printf(" ");
 
   return 1;
 }
 
 int CountVowelsAndConsonants(char *s) {
   char *pointer = s;
-  int asciiCode, isLowerCaseRange, isUpperCaseRange, isSpace;
+  int asciiCode, isLowerCaseRange, isUpperCaseRange;
 
   int numberOfA = 0; 
   int numberOfE = 0; 
@@ -93,20 +91,33 @@ int CountVowelsAndConsonants(char *s) {
     pointer++;
   }
 
-  printf("- Number of vowels: %d\n", numberOfA + numberOfE + numberOfI + numberOfO + numberOfU);
-  printf("  - Number of \"a\": %d\n", numberOfA);
-  printf("  - Number of \"e\": %d\n", numberOfE);
-  printf("  - Number of \"i\": %d\n", numberOfI);
-  printf("  - Number of \"o\": %d\n", numberOfO);
-  printf("  - Number of \"u\": %d\n", numberOfU);
-  printf("- Number of consonants: %d\n", numberOfConsonants);
+  int totalVowels = numberOfA + numberOfE + numberOfI + numberOfO + numberOfU;
+
+  printf("%d ", totalVowels);
+
+  if (numberOfA != 0) {
+    printf("%d ", numberOfA);
+  }
+  if (numberOfE != 0) {
+    printf("%d ", numberOfE);
+  }
+  if (numberOfI != 0) {
+    printf("%d ", numberOfI);
+  }
+  if (numberOfO != 0) {
+    printf("%d ", numberOfO);
+  }
+  if (numberOfU != 0) {
+    printf("%d ", numberOfU);
+  }
+
+  printf("%d ", numberOfConsonants);
 
   return 1;
 }
 
 int replaceSpacesWithUnderscores(char *s) {
   char *pointer = s;
-  printf("- Modified string: ");
 
   while(*pointer != '\0') {
     
@@ -118,7 +129,6 @@ int replaceSpacesWithUnderscores(char *s) {
 
     pointer++;
   }
-  printf("\n");
 
   return 1;
 }
