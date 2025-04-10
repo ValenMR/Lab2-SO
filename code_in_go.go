@@ -55,28 +55,38 @@ func quitarGuiones(s string) string {
 }
 
 func main() {
-	//el reader es para leer la entrada del usuario
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Ingresa una cadena (máx. 100 caracteres): ")
-	input, _ := reader.ReadString('\n')
-	input = strings.TrimSpace(input)
+	var input string
+
+	// Si se pasa un argumento (argv[1]), lo usamos; de lo contrario, leemos desde el teclado.
+	if len(os.Args) > 1 {
+		input = os.Args[1]
+	} else {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Ingresa una cadena (máx. 100 caracteres): ")
+		tmp, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(tmp)
+	}
+
+	// Si la cadena es mayor a 100 caracteres, se trunca.
 	if len(input) > 100 {
 		input = input[:100]
 	}
 
-	//resultados de cadena invertida
+	// Obtener resultados
 	invertida := invertirCadena(input)
-	fmt.Println("Cadena invertida:", invertida)
-
-	//resultados del conteo de vocales y consonantes
-	v, mapaVocales, c := vocalesYconsonantes(input)
-	fmt.Printf("Vocales: %d\n", v)
-	for k, val := range mapaVocales {
-		fmt.Printf("'%c': %d veces\n", k, val)
-	}
-	fmt.Printf("Consonantes: %d\n", c)
-
-	//resultado de quitar los guiones
+	vocalesTotales, mapaVocales, consonantesTotales := vocalesYconsonantes(input)
 	modificada := quitarGuiones(input)
-	fmt.Println("Cadena con espacios reemplazados:", modificada)
+
+	// Construir una salida en una sola línea.
+	salida := fmt.Sprintf("Cadena invertida: %s | ", invertida)
+	salida += fmt.Sprintf("Vocales totales: %d (", vocalesTotales)
+	for k, val := range mapaVocales {
+		salida += fmt.Sprintf("'%c': %d, ", k, val)
+	}
+	// Eliminar la coma y espacio de más, si existe.
+	salida = strings.TrimRight(salida, ", ")
+	salida += fmt.Sprintf(") | Consonantes totales: %d | ", consonantesTotales)
+	salida += fmt.Sprintf("Cadena con espacios reemplazados: %s", modificada)
+
+	fmt.Println(salida)
 }
